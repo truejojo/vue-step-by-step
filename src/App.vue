@@ -11,7 +11,9 @@ import ListCheckboxComponent from "./components/ListCheckboxComponent.vue";
       <InputComponent />
     </BorderLayout>
     <BorderLayout>
-      <ButtonComponent />
+      <ButtonComponent>toggle color</ButtonComponent>
+      <ButtonComponent>click me</ButtonComponent>
+      <ButtonComponent>send</ButtonComponent>
     </BorderLayout>
     <BorderLayout>
       <ListCheckboxComponent />
@@ -19,4 +21,10 @@ import ListCheckboxComponent from "./components/ListCheckboxComponent.vue";
   </div>
 </template>
 
-<style scoped></style>
+<style>
+  #app {
+    min-height: 100vh;
+    background-color: #222;
+    color: #f5f5f5
+  }
+</style>
