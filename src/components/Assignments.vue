@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, provide } from "vue";
 import AssignmentsList from "./AssignmentsList.vue";
+import AssignmentCreate from "./AssignmentCreate.vue";
 
 const assignments = ref([
   { name: "Finish project", complete: false, id: 1 },
@@ -19,7 +20,15 @@ const completed = computed(() =>
 const toggleComplete = (assignment) => {
   assignment.complete = !assignment.complete;
 };
-provide('toggleComplete', toggleComplete);
+provide("toggleComplete", toggleComplete);
+
+const add = (name) => {
+  assignments.value.push({
+    id: Math.random(),
+    name,
+    complete: false,
+  });
+};
 // const filters = computed(() => {
 //   return {
 //     inProgress: this.assignments.filter((assignment) => !assignment.complete),
@@ -29,14 +38,10 @@ provide('toggleComplete', toggleComplete);
 </script>
 
 <template>
-  <AssignmentsList
-    :assignments="inProgress"
-    title="In progress"
-  />
-  <AssignmentsList
-    :assignments="completed"
-    title="Completed"
-  />
+  <AssignmentsList :assignments="inProgress" title="In progress" />
+  <AssignmentsList :assignments="completed" title="Completed" />
+
+  <AssignmentCreate @add="add" />
 </template>
 
 <style></style>
