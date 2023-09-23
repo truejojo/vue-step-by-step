@@ -1,10 +1,15 @@
 <script setup>
+import { inject } from "vue";
+
 defineProps({
   assignment: Object,
-  toggleComplete: Function,
-})
+});
+const toggleComplete = inject("toggleComplete");
 </script>
 
+<!-- TODO
+funktioniert nicht mit v-model
+-->
 <template>
   <li>
     <input

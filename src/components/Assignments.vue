@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, provide } from "vue";
 import AssignmentsList from "./AssignmentsList.vue";
 
 const assignments = ref([
@@ -19,6 +19,7 @@ const completed = computed(() =>
 const toggleComplete = (assignment) => {
   assignment.complete = !assignment.complete;
 };
+provide('toggleComplete', toggleComplete);
 // const filters = computed(() => {
 //   return {
 //     inProgress: this.assignments.filter((assignment) => !assignment.complete),
@@ -31,12 +32,10 @@ const toggleComplete = (assignment) => {
   <AssignmentsList
     :assignments="inProgress"
     title="In progress"
-    :toggleComplete="toggleComplete"
   />
   <AssignmentsList
     :assignments="completed"
     title="Completed"
-    :toggleComplete="toggleComplete"
   />
 </template>
 

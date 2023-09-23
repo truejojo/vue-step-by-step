@@ -4,7 +4,6 @@ import Assignment from "./Assignment.vue";
 defineProps({
   assignments: Array,
   title: String,
-  toggleComplete: Function,
 });
 </script>
 
@@ -16,7 +15,6 @@ defineProps({
         v-for="assignment in assignments"
         :key="assignment.id"
         :assignment="assignment"
-        :toggleComplete="toggleComplete"
       />
     </ul>
   </section>
