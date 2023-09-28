@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <section>
     <header v-if="$slots.heading" class="d-flex justify-content-between">
@@ -19,5 +17,3 @@
     <slot></slot>
   </section>
 </template>
-
-<style></style>

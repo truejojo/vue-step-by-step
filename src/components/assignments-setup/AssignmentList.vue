@@ -18,6 +18,7 @@ const props = defineProps({
     default: false,
   },
 });
+const emit = defineEmits(['toggle']);
 
 const currentTag = ref("all");
 
@@ -29,8 +30,8 @@ const filteredAssignments = computed(() =>
       )
 );
 
-const getAssignmentsTags = () =>
-  props.assignments.map((assignment) => assignment.tag);
+const assignmentsTags = computed(() =>
+  props.assignments.map((assignment) => assignment.tag));
 </script>
 
 <template>
@@ -42,7 +43,7 @@ const getAssignmentsTags = () =>
       </h2>
       <button
         v-show="canToggle"
-        @click="$emit('toggle')"
+        @click="emit('toggle')"
         class="btn btn-info btn-sm"
       >
         &times;
@@ -52,17 +53,17 @@ const getAssignmentsTags = () =>
     <template #assignmentTags>
       <AssignmentTags
         v-model:currentTag="currentTag"
-        :initial-tags="getAssignmentsTags()"
+        :initial-tags="assignmentsTags"
       ></AssignmentTags>
     </template>
 
-      <template #assignment>
-        <Assignment
-          v-for="assignment in filteredAssignments"
-          :key="assignment.id"
-          :assignment="assignment"
-        ></Assignment>
-      </template>
+    <template #assignment>
+      <Assignment
+        v-for="assignment in filteredAssignments"
+        :key="assignment.id"
+        :assignment="assignment"
+      ></Assignment>
+    </template>
 
     <slot></slot>
   </AssignmentPanel>
