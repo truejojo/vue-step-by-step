@@ -2,9 +2,7 @@
 import BorderLayout from "./layouts/BorderLayout.vue";
 import InputComponent from "./components/InputComponent.vue";
 import ButtonComponent from "./components/ButtonComponent.vue";
-// import ListCheckboxComponent from "./components/ListCheckboxComponent.vue";
-import Assignments from "./components/assignments/Assignments.vue";
-import AssignmentsSetup from "./components/assignments-setup/Assignments.vue";
+import ListCheckboxComponent from "./components/ListCheckboxComponent.vue"
 </script>
 
 <template>
@@ -17,15 +15,7 @@ import AssignmentsSetup from "./components/assignments-setup/Assignments.vue";
       <ButtonComponent>click me</ButtonComponent>
       <ButtonComponent>send</ButtonComponent>
     </BorderLayout>
-    <!-- <BorderLayout>
-      <Assignments />
-    </BorderLayout> -->
-    <BorderLayout>
-      <AssignmentsSetup />
-    </BorderLayout>
-    <!-- <BorderLayout>
-      <ListCheckboxComponent />
-    </BorderLayout> -->
+    <ListCheckboxComponent />
   </div>
 </template>
 

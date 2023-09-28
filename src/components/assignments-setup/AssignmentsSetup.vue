@@ -1,5 +1,6 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
+import axios from "axios";
 import AssignmentList from "./AssignmentList.vue";
 import AssignmentCreate from "./AssignmentCreate.vue";
 
@@ -8,6 +9,8 @@ const assignments = ref([
   { name: "Read Chapter 4", complete: false, id: 2, tag: "science" },
   { name: "Turn in Homework", complete: false, id: 3, tag: "math" },
 ]);
+
+/* http://localhost:3000/assignments */
 
 const filters = computed(() => {
   return {
@@ -24,21 +27,26 @@ const add = (name) => {
     tag: "database",
   });
 };
+
+const showCompleted = ref(true);
+const toggleShowCompleted = () => (showCompleted.value = !showCompleted.value);
 </script>
 
 <template>
-  <section>
-    <AssignmentList
-      v-if="filters.inProgress.length"
-      :assignments="filters.inProgress"
-      title="In Progress"
-    ></AssignmentList>
-    <AssignmentList
-      v-if="filters.completed.length"
-      :assignments="filters.completed"
-      title="Completed"
-    ></AssignmentList>
-
-    <AssignmentCreate @add="add"></AssignmentCreate>
+  <section class="row">
+    <div class="col-12 col-md-6">
+      <AssignmentList :assignments="filters.inProgress" title="In Progress">
+        <AssignmentCreate @add="add"></AssignmentCreate>
+      </AssignmentList>
+    </div>
+    <div class="col-12 col-md-6" v-show="showCompleted">
+      <AssignmentList
+        :assignments="filters.completed"
+        title="Completed"
+        canToggle
+        @toggle="toggleShowCompleted()"
+      >
+      </AssignmentList>
+    </div>
   </section>
 </template>

@@ -16,7 +16,6 @@ const tags = computed(() => ["all", ...new Set(props.initialTags)]);
 </script>
 
 <template>
-  <div class="me-2 mb-3">
     <small
       v-for="tag in tags"
       @click="$emit('update:currentTag', tag)"
@@ -27,7 +26,6 @@ const tags = computed(() => ["all", ...new Set(props.initialTags)]);
     >
       {{ tag }}
     </small>
-  </div>
 </template>
 
 <style></style>
